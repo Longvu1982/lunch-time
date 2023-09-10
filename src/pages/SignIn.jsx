@@ -44,11 +44,9 @@ const SignIn = () => {
 
     const userDocRef = doc(db, "users", user.uid);
     const userDocSnapshot = await getDoc(userDocRef);
-    console.log(userDocSnapshot);
 
     if (!userDocSnapshot.exists()) {
       // If the user document doesn't exist, create it
-      console.log("here");
       await setDoc(userDocRef, {
         displayName: user.displayName,
         email: user.email,
@@ -60,8 +58,6 @@ const SignIn = () => {
     }
   };
 
-
-  console.log(auth.currentUser);
   return (
     <div className="container mx-auto p-12 min-h-screen flex flex-col gap-16">
       <header className="flex justify-between items-center">

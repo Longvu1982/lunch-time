@@ -5,8 +5,13 @@ import { auth, db } from "./firebase";
 import { useEffect } from "react";
 import { doc, updateDoc } from "firebase/firestore";
 import { onAuthStateChanged } from "firebase/auth";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import HomeLayout from "./pages/HomeLayout";
+import CreateGroup from "./pages/CreateGroups";
 import Groups from "./pages/Groups";
+import GroupDetails from "./pages/GroupDetails";
+import CreateNewPoll from "./pages/CreateNewPoll";
 
 function App() {
   const [currentUser] = useAuthState(auth);
@@ -62,24 +67,31 @@ function App() {
   }, [currentUser]);
 
   return (
-    <BrowserRouter>
-      <Routes>
-        {currentUser ? (
-          <>
-            <Route path="/" element={<HomeLayout />} >
-              <Route index element={<Groups />} />
-            </Route>
-            <Route path="/ha-ha" element={<div>HAha</div>} />
-            <Route path="*" element={<Navigate to="/" />} />
-          </>
-        ) : (
-          <>
-            <Route path="sign-in" element={<SignIn />} />
-            <Route path="*" element={<Navigate to="/sign-in" />} />
-          </>
-        )}
-      </Routes>
-    </BrowserRouter>
+    <>
+      <ToastContainer className="text-sm" />
+      <BrowserRouter>
+        <Routes>
+          {currentUser ? (
+            <>
+              <Route path="/" element={<HomeLayout />}>
+                <Route index element={<Groups />}></Route>
+                <Route path="group/:groupId" element={<GroupDetails />} />
+                <Route path="create-group" element={<CreateGroup />} />
+                <Route path="create-poll" element={<CreateNewPoll />} />
+              </Route>
+
+              <Route path="/ha-ha" element={<div>HAha</div>} />
+              <Route path="*" element={<Navigate to="/" />} />
+            </>
+          ) : (
+            <>
+              <Route path="sign-in" element={<SignIn />} />
+              <Route path="*" element={<Navigate to="/sign-in" />} />
+            </>
+          )}
+        </Routes>
+      </BrowserRouter>
+    </>
   );
 }
 

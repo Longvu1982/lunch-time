@@ -20,7 +20,6 @@ const HomeLayout = () => {
   const navigate = useNavigate();
   const usersRef = collection(db, "users");
   const [users, loading, error, snapshot] = useCollectionData(usersRef);
-  console.log(users);
   useClickOutside(ref, () => setIsOpen(false));
 
   const handleLogout = () => {
@@ -52,7 +51,7 @@ const HomeLayout = () => {
         <p className="pt-10 font-semibold mb-2 text-[#555]">Danh sách tài khoản</p>
         <div className="flex flex-col gap-4">
           {users?.filter(item => item.uid !== currentUser.uid)?.map((user) => (
-            <div key={user.id} className="flex items-center gap-2">
+            <div key={user.uid} className="flex items-center gap-2">
               <div className="relative">
                 <img src={user.photoUrl} className="w-8 rounded-full" alt="" />
                 <div
@@ -86,7 +85,7 @@ const HomeLayout = () => {
             <div
               hidden={!isOpen}
               ref={ref}
-              className="absolute right-0 -bottom-full translate-y-[90px] shadow-md rounded-md p-2"
+              className="absolute right-0 -bottom-full translate-y-[90px] shadow-md rounded-md p-2 bg-white"
             >
               <p className="text-sm font-semibold">{currentUser.displayName}</p>
               <p className="text-xs opacity-50 mb-4">{currentUser.email}</p>
