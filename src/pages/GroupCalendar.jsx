@@ -74,8 +74,6 @@ const GroupCalendar = () => {
     const [docSnapshot, loading, error] = useDocument(pollsCollectionRef);
     const navigate = useNavigate();
 
-    console.log(events?.[0]?.timestamp?.toDate());
-
     const fetchGroupPolls = async () => {
         if (error) {
             toast.error("Có lỗi xảy ra khi lấy dữ liệu");
@@ -109,6 +107,7 @@ const GroupCalendar = () => {
                 polls: arrayUnion(newPoll),
             });
             toast.success("Tạo sự kiện thành công!");
+            setNewOption("")
             setOpen(false);
         } catch (error) {
             console.log(error);

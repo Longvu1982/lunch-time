@@ -202,7 +202,7 @@ const CreateGroup = () => {
                                             <input
                                                 {...valueProps}
                                                 value={search}
-                                                className="w-full p-2 border-[1px] bg-transparent rounded-md text-black"
+                                                className="w-full p-2 border-[1px] bg-transparent rounded-md text-black text-sm"
                                                 onChange={(e) => setSearch(e.target.value)}
                                             />
                                         );
@@ -221,7 +221,7 @@ const CreateGroup = () => {
                                                     setSearch(option.name);
                                                 }}
                                                 key={option.uid}
-                                                className="flex items-center gap-2 py-3 px-2 overflow-x-hidden overflow-y-visible text-ellipsis cursor-pointer hover:opacity-60 bg-[#aaa] border-0"
+                                                className="flex items-center gap-2 py-3 px-2 overflow-x-hidden overflow-y-visible text-ellipsis cursor-pointer hover:opacity-60 bg-[#fff] border-0"
                                             >
                                                 <div className="relative shrink-0">
                                                     <img src={option.photoURL} className="w-8 rounded-full shrink-0" alt="" />
@@ -232,7 +232,7 @@ const CreateGroup = () => {
                                                         )}
                                                     ></div>
                                                 </div>
-                                                <div className="w-full">
+                                                <div className="w-full text-black">
                                                     <p className="overflow-hidden w-full text-xs font-semibold">{option.displayName}</p>
                                                     <p className="text-xs opacity-75">{option.email}</p>
                                                 </div>
