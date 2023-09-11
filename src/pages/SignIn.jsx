@@ -50,9 +50,9 @@ const SignIn = () => {
       await setDoc(userDocRef, {
         displayName: user.displayName,
         email: user.email,
-        photoUrl: user.photoURL,
+        photoURL: user.photoURL,
         status: "online",
-        uid: user.id
+        uid: user.uid
         // Add any other user-related data here
       });
     }

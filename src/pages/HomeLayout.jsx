@@ -45,7 +45,7 @@ const HomeLayout = () => {
             <span className="text-base text-[#f9bd0f] ">Ăn gì</span>
           </div>
         </div>
-        <div className="bg-accent rounded-md p-2 px-3 text-sm text-white">
+        <div onClick={() => navigate('/')} className="bg-accent rounded-md p-2 px-3 text-sm text-white cursor-pointer hover:opacity-75">
           Nhóm của bạn
         </div>
         <p className="pt-10 font-semibold mb-2 text-[#555]">Danh sách tài khoản</p>
@@ -53,7 +53,7 @@ const HomeLayout = () => {
           {users?.filter(item => item.uid !== currentUser.uid)?.map((user) => (
             <div key={user.uid} className="flex items-center gap-2">
               <div className="relative">
-                <img src={user.photoUrl} className="w-8 rounded-full" alt="" />
+                <img src={user.photoURL} className="w-8 rounded-full" alt="" />
                 <div
                   className={twMerge(
                     "absolute -right-1 -bottom-1 rounded-full w-3 h-3",

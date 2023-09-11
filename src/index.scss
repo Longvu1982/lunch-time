@@ -28,6 +28,7 @@
   padding: 4px 6px !important;
   border: 0 !important;
   background-color: #45ae53 !important;
+  justify-content: center;
   .rbc-event-content {
     font-size: 12px !important;
   }
@@ -63,4 +64,8 @@
   padding: 4px 3px !important;
   font-size: 82% !important;
   min-height: 30px !important;
+}
+
+.rbc-row-content {
+  z-index: 0 !important;
 }
