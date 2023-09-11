@@ -1,9 +1,31 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { doc, getDoc, arrayUnion, updateDoc } from "firebase/firestore";
 import { auth, db } from "../firebase";
 import { useDocument, useDocumentData } from "react-firebase-hooks/firestore";
 import { useAuthState } from "react-firebase-hooks/auth";
+
+const PollOptionAfterVote = ({ width, text }) => {
+    const [currentWidth, setCurrentWidth] = useState(0);
+
+    useEffect(() => {
+        setTimeout(() => {
+            setCurrentWidth(width);
+        }, 200);
+    }, []);
+
+    return (
+        <div className="border-2 border-accent px-4 py-1 pb-2 rounded-md">
+            <div className="flex items-center mb-2 justify-between">
+                <span className="text-[#666] font-semibold text-base">{text}</span>
+                <span>{`${Math.floor(currentWidth)}%`}</span>
+            </div>
+            <div key={text} className="bg-accent bg-opacity-20 h-2 rounded-md relative overflow-hidden">
+                <div className="absolute left-0 top-0 bottom-0 bg-accent transition-all duration-[500ms]" style={{ width: `${currentWidth}%` }}></div>
+            </div>
+        </div>
+    );
+};
 
 const PollDetails = () => {
     const [selectedOption, setSelectedOption] = useState("");
@@ -84,12 +106,7 @@ const PollDetails = () => {
         return (
             <div className="flex flex-col gap-2 max-w-[300px]">
                 {options.map((option) => (
-                    <div key={option.optionText} className="bg-accent bg-opacity-20 h-9 rounded-md relative overflow-hidden">
-                        <div className="absolute left-0 top-0 bottom-0 bg-accent" style={{ width: `${(option.votes / numberOfUsers) * 100}%` }}></div>
-                        <div className="absolute inset-0 px-2 flex items-center">
-                            <span className="text-white font-semibold text-base">{option.optionText}</span>
-                        </div>
-                    </div>
+                    <PollOptionAfterVote text={option.optionText} key={option.optionText} width={(option.votes / numberOfUsers) * 100} />
                 ))}
             </div>
         );
