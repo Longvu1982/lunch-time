@@ -261,7 +261,7 @@ const GroupCalendar = () => {
                             className="text-white hover:opacity-75 cursor-pointer"
                             onClick={() => {
                                 toast.success("Đã copy!");
-                                navigator.clipboard.writeText(successCode);
+                                navigator.clipboard.writeText(docSnapshot?.data()?.code);
                             }}
                         />
                     </header>

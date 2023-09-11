@@ -52,7 +52,8 @@ const SignIn = () => {
         email: user.email,
         photoURL: user.photoURL,
         status: "online",
-        uid: user.uid
+        uid: user.uid,
+        groupIds: []
         // Add any other user-related data here
       });
     }
