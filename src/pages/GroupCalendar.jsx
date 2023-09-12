@@ -222,6 +222,7 @@ const GroupCalendar = () => {
                                         setOptions((prev) => {
                                             const optionsSet = new Set([...prev]);
                                             optionsSet.add(newOption.trim());
+                                            setNewOption("")
                                             return Array.from(optionsSet);
                                         });
                                     }}
